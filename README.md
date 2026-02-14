@@ -1,4 +1,4 @@
-# 🚀 Pipeline Test App
+# 🚀 dm13-example-frontend-app 
 
 A simple Next.js frontend application designed for testing CI/CD pipelines with Docker and Kubernetes auto-deployment.
 
@@ -78,12 +78,6 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete deployment guide including:
 │       ├── page.tsx          # Main app page with version display
 │       ├── layout.tsx         # Root layout
 │       └── globals.css        # Global styles
-├── k8s/
-│   ├── deployment.yaml        # Kubernetes deployment
-│   └── service.yaml           # Kubernetes service
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yaml         # CI/CD pipeline
 ├── Dockerfile                 # Multi-stage Docker build
 ├── .dockerignore             # Docker ignore rules
 └── next.config.ts            # Next.js config with standalone output
@@ -116,7 +110,6 @@ The GitHub Actions workflow automatically:
 | Tailwind CSS | 4.x | Styling |
 | Bun | Latest | Package manager |
 | Docker | - | Containerization |
-| Kubernetes | - | Orchestration |
 | GitHub Actions | - | CI/CD |
 
 ## 📊 What You'll See
@@ -138,36 +131,6 @@ This makes it easy to verify that:
 
 Edit [`src/app/page.tsx`](./src/app/page.tsx) to change the UI.
 
-### Adjust Resources
-
-Edit [`k8s/deployment.yaml`](./k8s/deployment.yaml) to modify:
-- Replica count
-- Resource limits
-- Health check settings
-
-### Change Registry
-
-Edit [`.github/workflows/ci-cd.yaml`](./.github/workflows/ci-cd.yaml):
-```yaml
-env:
-  REGISTRY: ghcr.io  # Your registry here
-```
-
-## 🧪 Testing the Pipeline
-
-1. Make a change to the app
-2. Commit and push to `main`
-3. Watch GitHub Actions run
-4. See the updated version in Kubernetes!
-
-```bash
-# Watch deployment update
-kubectl get pods -l app=pipeline-test-app -w
-
-# Check new version
-kubectl logs -l app=pipeline-test-app --tail=20
-```
-
 ## 🐛 Troubleshooting
 
 ### Build Issues
@@ -176,18 +139,6 @@ kubectl logs -l app=pipeline-test-app --tail=20
 docker build -t test .
 bun typecheck
 bun lint
-```
-
-### Deployment Issues
-```bash
-# Check pod status
-kubectl describe pod <pod-name>
-
-# View logs
-kubectl logs -l app=pipeline-test-app --tail=50
-
-# Port forward for testing
-kubectl port-forward svc/pipeline-test-app 8080:80
 ```
 
 ## 📝 Commands Reference
@@ -232,4 +183,3 @@ Feel free to open issues or submit PRs!
 ---
 
 **Ready to deploy?** Check out [DEPLOYMENT.md](./DEPLOYMENT.md) for the complete guide!
-# dm13-example-frontend-app
